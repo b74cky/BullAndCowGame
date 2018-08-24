@@ -9,10 +9,10 @@ bool AskToPlayAgain();
 
 // the entry point for application
 int main() {
-
-	PrintIntro();
-	PlayTheGame();
-	AskToPlayAgain();
+	do {
+		PrintIntro();
+		PlayTheGame();
+	} while (AskToPlayAgain());
 
 	return 0;
 }
@@ -47,7 +47,7 @@ std::string GetGuess() {
 }
 
 bool AskToPlayAgain() {
-	std::cout << "Do you want to play again? ";
+	std::cout << "Do you want to play again (y/n)? ";
 	std::string Response = "";
 	getline(std::cin, Response);
 	return (Response[0] == 'y') || (Response[0] == 'Y');
