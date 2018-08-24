@@ -45,3 +45,13 @@ std::string GetGuess() {
 	std::getline(std::cin, Guess);
 	return Guess;
 }
+
+bool AskToPlayAgain() {
+	std::cout << "Do you want to play again? ";
+	std::string Response = "";
+	getline(std::cin, Response);
+	return (Response[0] == 'y') || (Response[0] == 'Y');
+}
+
+
+
