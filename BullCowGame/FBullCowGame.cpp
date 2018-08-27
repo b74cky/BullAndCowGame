@@ -8,7 +8,7 @@ bool FBullCowGame::IsGameWon() const { return bGameIsWon; }
 FBullCowGame::FBullCowGame() { Reset(); }
 
 void FBullCowGame::Reset() {
-	constexpr int32 MAX_TRIES = 8;
+	constexpr int32 MAX_TRIES = 3;
 	MyMaxTries = MAX_TRIES;
 
 	const FString HIDDEN_WORD = "planet";
@@ -34,6 +34,8 @@ EGuessStatus FBullCowGame::CheckGuessValidaty(FString Geuss) const{
 		return EGuessStatus::OK; // otherwise  OK
 	}
 }
+
+
 
 // receives a VALID guess, incriments turn, and returns count
 FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess) {

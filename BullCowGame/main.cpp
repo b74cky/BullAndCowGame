@@ -12,6 +12,7 @@ using int32 = int;
 
 void PrintIntro();
 void PlayTheGame();
+void PrintGameSummary();
 FText GetValidGuess();
 bool AskToPlayAgain();
 
@@ -22,6 +23,7 @@ int main() {
 	do {
 		PrintIntro();
 		PlayTheGame();
+		PrintGameSummary();
 	} while (AskToPlayAgain());
 
 	return 0;
@@ -51,10 +53,8 @@ void PlayTheGame() {
 		FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
 		std::cout << "Bulls = " << BullCowCount.Bulls;
 		std::cout << ". Cows = " << BullCowCount.Cows << "\n";
-		std::cout << "Your guess was: " << Guess << "\n\n";
+		std::cout << "Your guess was " << Guess << "\n\n";
 	}
-	//TODO summarise game
-
 	return;
 }
 
@@ -88,12 +88,19 @@ FText GetValidGuess() {
 }
 
 bool AskToPlayAgain() {
-	std::cout << "Do you want to play again (y/n)? ";
+	std::cout << "Do you want to play again with the same hidden word (y/n)? ";
 	FText Response = "";
 	getline(std::cin, Response);
 	std::cout << "\n\n";
 	return (Response[0] == 'y') || (Response[0] == 'Y');
 }
 
-
+void PrintGameSummary() {
+	if (BCGame.IsGameWon()) {
+		std::cout << "Congratulations! You won the game! \n";
+	}
+	else {
+		std::cout << "Bad luck. You can try one more time. \n";
+	}
+}
 
