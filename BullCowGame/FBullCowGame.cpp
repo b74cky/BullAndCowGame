@@ -3,6 +3,7 @@
 int32 FBullCowGame::GetMaxTries() const { return MyMaxTries; }
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
 int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length(); }
+bool FBullCowGame::IsGameWon() const { return bGameIsWon; }
 
 FBullCowGame::FBullCowGame() { Reset(); }
 
@@ -13,13 +14,11 @@ void FBullCowGame::Reset() {
 	const FString HIDDEN_WORD = "planet";
 	MyHiddenWord = HIDDEN_WORD;
 	MyCurrentTry = 1;
-
+	bGameIsWon = false;
 	return;
 }
 
-bool FBullCowGame::IsGameWon() const {
-	return false;
-}
+
 
 EGuessStatus FBullCowGame::CheckGuessValidaty(FString Geuss) const{
 	if (false) {
@@ -37,14 +36,13 @@ EGuessStatus FBullCowGame::CheckGuessValidaty(FString Geuss) const{
 }
 
 // receives a VALID guess, incriments turn, and returns count
-FBullCowCount FBullCowGame::SubmitGuess(FString Guess) {
-	// incriment the turn number
+FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess) {
 	MyCurrentTry++;
-	// setup a return variable
 	FBullCowCount BullCowCount;
-	// loop through all letters in the guess
-	int32 HiddenWordLength = MyHiddenWord.length();
-	for (int32 MHWChar = 0; MHWChar < HiddenWordLength; MHWChar++) {
+	int32 WordLength = MyHiddenWord.length(); //assuning same length as guess
+
+	// loop through all letters in the hidden word
+	for (int32 MHWChar = 0; MHWChar < WordLength; MHWChar++) {
 		// compare letters against the hidden word
 		for (int32 GChar = 0; GChar < Guess.length(); GChar++) {
 			// if they match then
@@ -61,6 +59,12 @@ FBullCowCount FBullCowGame::SubmitGuess(FString Guess) {
 				}
 			}
 		}
+	}
+	if (BullCowCount.Bulls == WordLength) {
+		bGameIsWon = true;
+	}
+	else {
+		bGameIsWon = false;
 	}
 	return BullCowCount;
 }
