@@ -47,7 +47,7 @@ void PrintIntro() {
 	std::cout << "---------------------------------------------------\n";
 	std::cout << "A Bull - a correct letter in the right place.\n";
 	std::cout << "A Cow - a correct letter, but in the wrong place.\n";
-	std::cout << "You have 3 tries to guess the hidden word.\n";
+	std::cout << "You have " << BCGame.GetMaxTries() << " tries to guess the hidden word.\n";
 	std::cout << "---------------------------------------------------\n";
 	std::cout << "----G O O D  L U C K  &  L E T' S  S T A R T !:----\n";
 	std::cout << "---------------------------------------------------\n";
