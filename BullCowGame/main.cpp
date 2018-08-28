@@ -30,8 +30,7 @@ int main() {
 }
 
 
-//Functions
-
+//--Functions--
 // intoduce the game section
 void PrintIntro() {
 	std::cout << "Welcome to Bulls and Cows Game! \n";
