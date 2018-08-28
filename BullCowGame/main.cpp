@@ -52,18 +52,17 @@ void PrintIntro() {
 	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength() << " letter isogram I'm thinking of? \n\n";
 }
 
-// play the game section
+//play the game section
 void PlayTheGame() {
 
 	BCGame.Reset();
 	int32 MaxTries = BCGame.GetMaxTries();
 
-	// loop asking for guesses while the game is NOT won
-	// and there are still tries remaining
+	//loop asking for guesses while the game is NOT won
 	while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries) {
 		FText Guess = GetValidGuess();
 
-		// submit valid guess to the game, and receive counts
+		//submit valid guess to the game, and receive counts
 		FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
 		std::cout << "Bulls = " << BullCowCount.Bulls;
 		std::cout << ". Cows = " << BullCowCount.Cows << "\n\n";
@@ -71,7 +70,7 @@ void PlayTheGame() {
 	return;
 }
 
-// loop continually until the user enter a valid guess
+//loop continually until the user enter a valid guess
 FText GetValidGuess() {
 	FText Guess = "";
 	EGuessStatus Status = EGuessStatus::Invalid_Status;
@@ -95,7 +94,7 @@ FText GetValidGuess() {
 		default:
 			break;
 		}
-	} while (Status != EGuessStatus::OK); // keep looping until we get no errors
+	} while (Status != EGuessStatus::OK);
 	return Guess;
 }
 
