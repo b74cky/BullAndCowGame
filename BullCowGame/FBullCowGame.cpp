@@ -39,6 +39,21 @@ EGuessStatus FBullCowGame::CheckGuessValidaty(FString Guess) const{
 	}
 }
 
+FString FBullCowGame::GetHiddenWord(FString) {
+	FString HiddenWordList[12] = {
+		"dog", "sun", "bot",
+		"plan", "folk", "lion",
+		"plane", "death", "water",
+		"planet", "boxing", "rocket"
+	};
+	for (int32 i = 0; i < 12; i++) {
+		if (HiddenWordList[i].length() == 3) {
+
+		}
+	}
+	return FString();
+}
+
 //receives a VALID guess, incriments turn, and returns count
 FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess) {
 	MyCurrentTry++;

@@ -51,7 +51,6 @@ void PrintIntro() {
 	std::cout << "---------------------------------------------------\n";
 	std::cout << "----G O O D  L U C K  &  L E T' S  S T A R T !:----\n";
 	std::cout << "---------------------------------------------------\n";
-	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength() << " letter isogram I'm thinking of? \n\n";
 }
 
 //play the single game to complection
@@ -59,7 +58,10 @@ void PlayTheGame() {
 
 	BCGame.Reset();
 	int32 MaxTries = BCGame.GetMaxTries();
-
+	int32 GWorLength;
+	std::cout << "Please enter the length of word you'd like to guess: ";
+	std::cin >> GWorLength;
+	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength() << " letter isogram I'm thinking of? \n\n";
 	//loop asking for guesses while the game is NOT won
 	while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries) {
 		FText Guess = GetValidGuess();
