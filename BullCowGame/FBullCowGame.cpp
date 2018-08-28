@@ -22,14 +22,14 @@ void FBullCowGame::Reset() {
 }
 
 EGuessStatus FBullCowGame::CheckGuessValidaty(FString Guess) const{
-	if (!IsIsogram(Guess)) {  
-		return EGuessStatus::Not_Isogram; // if the guess isn't and isogram
+	if (Guess.length() != GetHiddenWordLength()) {
+		return EGuessStatus::Wrong_length; // if the length is wrong
 	}
-	else if (false) {
+	else if (!IsLowerase(Guess)) {
 		return EGuessStatus::Not_Lowercase; // if the guess isn't all lowercase
 	}
-	else if ( Guess.length() != GetHiddenWordLength()) {
-		return EGuessStatus::Wrong_length; // if the length is wrong
+	else 	if (!IsIsogram(Guess)) {
+		return EGuessStatus::Not_Isogram; // if the guess isn't and isogram
 	}
 	else {
 		return EGuessStatus::OK; // otherwise  OK
@@ -83,6 +83,13 @@ bool FBullCowGame::IsIsogram(FString Word) const {
 		}
 	}
 	return true; //for example in case where /0 or "" is entered
+}
+
+bool FBullCowGame::IsLowerase(FString Word) const {
+	for (auto Letter : Word) {
+		if (!islower(Letter)) { return false; }
+	}
+	return true;
 }
 
 
