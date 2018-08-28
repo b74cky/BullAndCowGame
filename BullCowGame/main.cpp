@@ -2,6 +2,7 @@
 This acts as the view in a MVC pattern, and is responsible for all
 user interaction. For game logic see the FBullCowGame class.
 */
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -10,13 +11,14 @@ user interaction. For game logic see the FBullCowGame class.
 using FText = std::string;
 using int32 = int;
 
+//function prototypes as outside class
 void PrintIntro();
 void PlayTheGame();
 void PrintGameSummary();
 FText GetValidGuess();
 bool AskToPlayAgain();
 
-FBullCowGame BCGame; // instantiate a new game
+FBullCowGame BCGame; //instantiate a new game, which we re-use across plays
 
 int main() {
 	do {
@@ -29,7 +31,6 @@ int main() {
 }
 
 //--Functions--
-// intoduce the game section
 void PrintIntro() {
 	std::cout << "---------------------------------------------------\n";
 	std::cout << "    Welcome to Bulls and Cows, a fun word game!    \n";
@@ -52,7 +53,7 @@ void PrintIntro() {
 	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength() << " letter isogram I'm thinking of? \n\n";
 }
 
-//play the game section
+//play the single game to complection
 void PlayTheGame() {
 
 	BCGame.Reset();
@@ -114,4 +115,3 @@ void PrintGameSummary() {
 		std::cout << "Bad luck. You can try one more time. \n";
 	}
 }
-
