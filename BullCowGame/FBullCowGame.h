@@ -30,7 +30,7 @@ public:
 	int32 GetHiddenWordLength() const;
 	bool IsGameWon() const;
 	EGuessStatus CheckGuessValidaty(FString) const;
-	FString GetHiddenWord(FString);
+	FString GetHiddenWord(int32);
 
 	void Reset();
 	FBullCowCount SubmitValidGuess(FString);

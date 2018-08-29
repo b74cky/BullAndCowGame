@@ -16,9 +16,8 @@ int32 FBullCowGame::GetMaxTries() const {
 }
 
 
-void FBullCowGame::Reset() {
-	const FString HIDDEN_WORD = "planet"; //this MUST be an isogram 
-	MyHiddenWord = HIDDEN_WORD;
+void FBullCowGame::Reset() { 
+	MyHiddenWord = GetHiddenWord(3);
 	MyCurrentTry = 1;
 	bGameIsWon = false;
 	return;
@@ -39,19 +38,20 @@ EGuessStatus FBullCowGame::CheckGuessValidaty(FString Guess) const{
 	}
 }
 
-FString FBullCowGame::GetHiddenWord(FString) {
+FString FBullCowGame::GetHiddenWord(int32 GWordLength) {
 	FString HiddenWordList[12] = {
 		"dog", "sun", "bot",
 		"plan", "folk", "lion",
 		"plane", "death", "water",
 		"planet", "boxing", "rocket"
 	};
+	FString SLWord = "";
 	for (int32 i = 0; i < 12; i++) {
-		if (HiddenWordList[i].length() == 3) {
-
+		if (HiddenWordList[i].length() == GWordLength) {
+			SLWord += HiddenWordList[i];
 		}
 	}
-	return FString();
+	return SLWord;
 }
 
 //receives a VALID guess, incriments turn, and returns count
