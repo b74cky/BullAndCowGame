@@ -40,6 +40,7 @@ private:
 	int32 GWordLength;
 	int32 MyCurrentTry;
 	FString MyHiddenWord;
+	std::vector<FString> LiWordofSize;
 	bool bGameIsWon;
 	bool IsIsogram(FString) const;
 	bool IsLowerase(FString) const;

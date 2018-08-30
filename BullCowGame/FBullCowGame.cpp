@@ -20,7 +20,8 @@ int32 FBullCowGame::GetMaxTries() const {
 }
 
 
-void FBullCowGame::Reset() { 
+void FBullCowGame::Reset() {
+	LiWordofSize;
 	MyHiddenWord = GetHiddenWord(GWordLength);
 	MyCurrentTry = 1;
 	bGameIsWon = false;
@@ -49,7 +50,6 @@ FString FBullCowGame::GetHiddenWord(int32 GWordLengthT) {
 		"plane", "death", "water",
 		"planet", "boxing", "rocket"
 	};
-	std::vector<FString> LiWordofSize;
 	for (int32 i = 0; i < 12; i++) {
 		if (HiddenWordList[i].length() == GWordLengthT) {
 			LiWordofSize.push_back(HiddenWordList[i]);

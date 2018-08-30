@@ -19,7 +19,7 @@ void PrintGameSummary();
 FText GetValidGuess();
 bool AskToPlayAgain();
 
-int32 GWordLength =3;
+int32 GWordLength = 5;
 FBullCowGame BCGame(GWordLength); //instantiate a new game, which we re-use across plays
 
 int main() {
@@ -59,9 +59,6 @@ void PlayTheGame() {
 
 	BCGame.Reset();
 	int32 MaxTries = BCGame.GetMaxTries();
-	int32 GWordLength;
-	std::cout << "Please enter the length of word you'd like to guess: ";
-	std::cin >> GWordLength;
 	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength() << " letter isogram I'm thinking of? \n\n";
 	//loop asking for guesses while the game is NOT won
 	while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries) {
