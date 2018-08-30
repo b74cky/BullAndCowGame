@@ -4,7 +4,11 @@
 
 #define TMap std::map //to make syntax Unreal friendly
 
-FBullCowGame::FBullCowGame() { Reset(); } //default constructor 
+FBullCowGame::FBullCowGame(int32 GWordLengthM) {
+	GWordLength = GWordLengthM;
+	Reset();
+
+} //default constructor 
 
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
 int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length(); }
@@ -17,7 +21,7 @@ int32 FBullCowGame::GetMaxTries() const {
 
 
 void FBullCowGame::Reset() { 
-	MyHiddenWord = GetHiddenWord(3);
+	MyHiddenWord = GetHiddenWord(GWordLength);
 	MyCurrentTry = 1;
 	bGameIsWon = false;
 	return;
@@ -38,20 +42,20 @@ EGuessStatus FBullCowGame::CheckGuessValidaty(FString Guess) const{
 	}
 }
 
-FString FBullCowGame::GetHiddenWord(int32 GWordLength) {
+FString FBullCowGame::GetHiddenWord(int32 GWordLengthT) {
 	FString HiddenWordList[12] = {
 		"dog", "sun", "bot",
 		"plan", "folk", "lion",
 		"plane", "death", "water",
 		"planet", "boxing", "rocket"
 	};
-	FString SLWord = "";
+	std::vector<FString> LiWordofSize;
 	for (int32 i = 0; i < 12; i++) {
-		if (HiddenWordList[i].length() == GWordLength) {
-			SLWord += HiddenWordList[i];
+		if (HiddenWordList[i].length() == GWordLengthT) {
+			LiWordofSize.push_back(HiddenWordList[i]);
 		}
 	}
-	return SLWord;
+	return LiWordofSize[rand() % GWordLengthT];
 }
 
 //receives a VALID guess, incriments turn, and returns count
