@@ -5,6 +5,7 @@ user interaction. For game logic see the FBullCowGame class.
 
 #pragma once
 
+#include <limits>
 #include <iostream>
 #include <string>
 #include"FBullCowGame.h"
@@ -16,11 +17,11 @@ using int32 = int;
 void PrintIntro();
 void PlayTheGame();
 void PrintGameSummary();
+void SetTheWLength();
 FText GetValidGuess();
 bool AskToPlayAgain();
 
-int32 GWordLength = 5;
-FBullCowGame BCGame(GWordLength); //instantiate a new game, which we re-use across plays
+FBullCowGame BCGame; //instantiate a new game, which we re-use across plays
 
 int main() {
 	do {
@@ -48,7 +49,6 @@ void PrintIntro() {
 	std::cout << "---------------------------------------------------\n";
 	std::cout << "A Bull - a correct letter in the right place.\n";
 	std::cout << "A Cow - a correct letter, but in the wrong place.\n";
-	std::cout << "You have " << BCGame.GetMaxTries() << " tries to guess the hidden word.\n";
 	std::cout << "---------------------------------------------------\n";
 	std::cout << "----G O O D  L U C K  &  L E T' S  S T A R T !:----\n";
 	std::cout << "---------------------------------------------------\n";
@@ -56,14 +56,12 @@ void PrintIntro() {
 
 //play the single game to complection
 void PlayTheGame() {
-
 	BCGame.Reset();
+	SetTheWLength();
 	int32 MaxTries = BCGame.GetMaxTries();
-	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength() << " letter isogram I'm thinking of? \n\n";
 	//loop asking for guesses while the game is NOT won
 	while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries) {
 		FText Guess = GetValidGuess();
-
 		//submit valid guess to the game, and receive counts
 		FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
 		std::cout << "Bulls = " << BullCowCount.Bulls;
@@ -80,8 +78,8 @@ FText GetValidGuess() {
 		//get a guess from the player
 		int32 CurrentTry = BCGame.GetCurrentTry();
 		std::cout << "Try " << CurrentTry << " of " << BCGame.GetMaxTries() << ". Enter your guess: ";
-		std::getline(std::cin, Guess);
 
+		std::getline(std::cin, Guess);
 		Status = BCGame.CheckGuessValidaty(Guess);
 		switch (Status) {
 		case EGuessStatus::Wrong_length:
@@ -115,4 +113,15 @@ void PrintGameSummary() {
 	else {
 		std::cout << "Bad luck. You can try one more time. \n";
 	}
+}
+void SetTheWLength() {
+	int32 WordLength;
+	std::cout << "Select the length of the word (from 3 to 6): ";
+	std::cin >> WordLength;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cout << "\n";
+	BCGame.GetTheWordDepOnS(WordLength);
+	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength() << " letter isogram I'm thinking of? \n";
+	std::cout << "You have " << BCGame.GetMaxTries() << " tries to guess the hidden word.\n\n";
+	return;
 }

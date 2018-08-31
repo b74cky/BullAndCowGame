@@ -6,7 +6,7 @@ The game is a simple guess the word based on MasterMind */
 #include <vector>
 
 //to make syntax Unreal friendly
-using FString = std::string; 
+using FString = std::string;
 using int32 = int;
 
 struct FBullCowCount {
@@ -24,23 +24,22 @@ enum EGuessStatus {
 
 class FBullCowGame {
 public:
-	FBullCowGame(int32); //constructor
+	FBullCowGame(); //constructor
 
 	int32 GetMaxTries() const;
 	int32 GetCurrentTry() const;
 	int32 GetHiddenWordLength() const;
+	int32 GetTheWordDepOnS(int32);
 	bool IsGameWon() const;
 	EGuessStatus CheckGuessValidaty(FString) const;
-	FString GetHiddenWord(int32);
 
 	void Reset();
 	FBullCowCount SubmitValidGuess(FString);
 
 private:
-	int32 GWordLength;
+	std::vector<FString> LiWordofSize;
 	int32 MyCurrentTry;
 	FString MyHiddenWord;
-	std::vector<FString> LiWordofSize;
 	bool bGameIsWon;
 	bool IsIsogram(FString) const;
 	bool IsLowerase(FString) const;

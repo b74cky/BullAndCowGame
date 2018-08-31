@@ -4,15 +4,27 @@
 
 #define TMap std::map //to make syntax Unreal friendly
 
-FBullCowGame::FBullCowGame(int32 GWordLengthM) {
-	GWordLength = GWordLengthM;
-	Reset();
-
-} //default constructor 
+FBullCowGame::FBullCowGame() { Reset(); } //default constructor 
 
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
 int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length(); }
 bool FBullCowGame::IsGameWon() const { return bGameIsWon; }
+
+int32 FBullCowGame::GetTheWordDepOnS (int32 WordLength) {
+	FString HiddenWordList[12] = {
+			"dog", "sun", "bot",
+			"plan", "folk", "lion",
+			"plane", "death", "water",
+			"planet", "boxing", "rocket"
+	};
+	for (int32 i = 0; i < 12; i++) {
+		if (HiddenWordList[i].length() == WordLength) {
+			LiWordofSize.push_back(HiddenWordList[i]);
+		}
+	}
+	MyHiddenWord = LiWordofSize[rand() % (WordLength-1)];
+	return int32();
+}
 
 int32 FBullCowGame::GetMaxTries() const {
 	TMap<int32, int32> WorldLengthToMaxTries{ {3,4}, {4,6}, {5,10}, {6,15}, {7,20} };
@@ -21,8 +33,7 @@ int32 FBullCowGame::GetMaxTries() const {
 
 
 void FBullCowGame::Reset() {
-	LiWordofSize;
-	MyHiddenWord = GetHiddenWord(GWordLength);
+	LiWordofSize.clear();
 	MyCurrentTry = 1;
 	bGameIsWon = false;
 	return;
@@ -41,21 +52,6 @@ EGuessStatus FBullCowGame::CheckGuessValidaty(FString Guess) const{
 	else {
 		return EGuessStatus::OK; //otherwise  OK
 	}
-}
-
-FString FBullCowGame::GetHiddenWord(int32 GWordLengthT) {
-	FString HiddenWordList[12] = {
-		"dog", "sun", "bot",
-		"plan", "folk", "lion",
-		"plane", "death", "water",
-		"planet", "boxing", "rocket"
-	};
-	for (int32 i = 0; i < 12; i++) {
-		if (HiddenWordList[i].length() == GWordLengthT) {
-			LiWordofSize.push_back(HiddenWordList[i]);
-		}
-	}
-	return LiWordofSize[rand() % GWordLengthT];
 }
 
 //receives a VALID guess, incriments turn, and returns count
