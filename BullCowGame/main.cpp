@@ -21,9 +21,7 @@ bool AskToPlayAgain();
 bool FIsDigit(FText WordLength);
 FText GetValidGuess();
 
-
 FBullCowGame BCGame; //instantiate a new game, which we re-use across plays
-
 
 int main() {
 	do {
@@ -52,7 +50,7 @@ void PrintIntro() {
 	std::cout << "A Bull - a correct letter in the right place.\n";
 	std::cout << "A Cow - a correct letter, but in the wrong place.\n";
 	std::cout << "---------------------------------------------------\n";
-	std::cout << "----G O O D  L U C K  &  L E T' S  S T A R T !:----\n";
+	std::cout << "----G O O D  L U C K  &  L E T' S  S T A R T !-----\n";
 	std::cout << "---------------------------------------------------\n";
 }
 
@@ -120,12 +118,11 @@ void PrintGameSummary() {
 //set the word length, with input validation
 void SetTheWLength() {
 	FText WordLength = "";
-	std::cout << "Select the length of the word (from 3 to 6): ";
+	std::cout << "Please select the length of the word you'd like to play with (from 3 to 6 letters): ";
 	getline(std::cin, WordLength);
 	std::cout << "\n";
 	while (!FIsDigit(WordLength)) { 
-		std::cout << "Please enter the right number.\n";
-		std::cout << "Select the length of the word (from 3 to 6): ";
+		std::cout << "Please enter the correct length (from 3 to 6 letters): ";
 		getline(std::cin, WordLength); 
 		std::cout << "\n";
 	};
