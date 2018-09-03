@@ -22,13 +22,13 @@ int32 FBullCowGame::GetTheWordDepOnS (int32 WordLength) {
 			LiWordofSize.push_back(HiddenWordList[i]);
 		}
 	}
-	MyHiddenWord = LiWordofSize[rand() % (WordLength-1)];
+	MyHiddenWord = LiWordofSize[rand() % (WordLength-1)]; //set the random hidden word from the word list with the appropriate length
 	return int32();
 }
 
 int32 FBullCowGame::GetMaxTries() const {
 	TMap<int32, int32> WorldLengthToMaxTries{ {3,4}, {4,6}, {5,10}, {6,15}, {7,20} };
-	return WorldLengthToMaxTries[MyHiddenWord.length()];
+	return WorldLengthToMaxTries[MyHiddenWord.length()]; //get the max tries, depends on word length
 }
 
 

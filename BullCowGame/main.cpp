@@ -4,7 +4,6 @@ user interaction. For game logic see the FBullCowGame class.
 */
 
 #pragma once
-
 #include <limits>
 #include <iostream>
 #include <string>
@@ -117,6 +116,8 @@ void PrintGameSummary() {
 		std::cout << "Bad luck. You can try one more time. \n";
 	}
 }
+
+//set the word length, with input validation
 void SetTheWLength() {
 	FText WordLength = "";
 	std::cout << "Select the length of the word (from 3 to 6): ";
@@ -135,7 +136,7 @@ void SetTheWLength() {
 	return;
 }
 
-//Input validation to define a correct digit
+//input validation to define a correct digit
 bool FIsDigit(FText WordLength) {
 	const char *temp = "0123456789-+";
 	unsigned point_count = 0;

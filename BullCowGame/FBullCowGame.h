@@ -27,19 +27,18 @@ class FBullCowGame {
 public:
 	FBullCowGame(); //constructor
 
+	void Reset();
 	int32 GetMaxTries() const;
 	int32 GetCurrentTry() const;
 	int32 GetHiddenWordLength() const;
 	int32 GetTheWordDepOnS(int32);
 	bool IsGameWon() const;
 	EGuessStatus CheckGuessValidaty(FString) const;
-
-	void Reset();
 	FBullCowCount SubmitValidGuess(FString);
 
 private:
-	std::vector<FString> LiWordofSize;
 	int32 MyCurrentTry;
+	std::vector<FString> LiWordofSize;
 	FString MyHiddenWord;
 	bool bGameIsWon;
 	bool IsIsogram(FString) const;
