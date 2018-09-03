@@ -18,10 +18,10 @@ void PrintIntro();
 void PlayTheGame();
 void PrintGameSummary();
 void SetTheWLength();
-void InputValid(int32 a);
-bool TheWordLengthValid(int32 TheWordLength);
-FText GetValidGuess();
 bool AskToPlayAgain();
+bool FIsDigit(FText WordLength);
+FText GetValidGuess();
+
 
 FBullCowGame BCGame; //instantiate a new game, which we re-use across plays
 
@@ -118,28 +118,37 @@ void PrintGameSummary() {
 	}
 }
 void SetTheWLength() {
-	int32 WordLength;
+	FText WordLength = "";
 	std::cout << "Select the length of the word (from 3 to 6): ";
-	std::cin >> WordLength;
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	getline(std::cin, WordLength);
 	std::cout << "\n";
-	while (!TheWordLengthValid(WordLength)) { 
+	while (!FIsDigit(WordLength)) { 
+		std::cout << "Please enter the right number.\n";
 		std::cout << "Select the length of the word (from 3 to 6): ";
-		std::cin >> WordLength;
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		getline(std::cin, WordLength); 
 		std::cout << "\n";
-	}
-	BCGame.GetTheWordDepOnS(WordLength);
+	};
+	int32 WordLengthInt = std::stoi(WordLength);
+	BCGame.GetTheWordDepOnS(WordLengthInt);
 	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength() << " letter isogram I'm thinking of? \n";
 	std::cout << "You have " << BCGame.GetMaxTries() << " tries to guess the hidden word.\n\n";
 	return;
 }
 
-bool TheWordLengthValid(int32 TheWordLength) {
-	if (TheWordLength < 3 || TheWordLength > 6) {
-		std::cout << "Please enter the right number.\n";
-		return false;
+//Input validation to define a correct digit
+bool FIsDigit(FText WordLength) {
+	const char *temp = "0123456789-+";
+	unsigned point_count = 0;
+
+	for (int32 i = 0; i < WordLength.size(); i++) {
+		if ((i > 0) && (WordLength[i] == '+' || WordLength[i] == '-')) return false;
+		else if (WordLength[i] == '.') {
+			point_count++;
+			if (point_count > 1) return false;
+		}
+		else if (!strchr(temp, WordLength[i])) return false;
+		else if (WordLength.size() > 10) return false;
 	}
+	if (std::stoi(WordLength) < 3 || std::stoi(WordLength) > 6) return false;
 	return true;
 }
-
