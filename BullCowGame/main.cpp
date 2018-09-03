@@ -149,6 +149,7 @@ bool FIsDigit(FText WordLength) {
 		else if (!strchr(temp, WordLength[i])) return false;
 		else if (WordLength.size() > 10) return false;
 	}
-	if (std::stoi(WordLength) < 3 || std::stoi(WordLength) > 6) return false;
+	if (WordLength == "") return false;
+	else if (std::stoi(WordLength) < 3 || std::stoi(WordLength) > 6) return false;
 	return true;
 }
