@@ -2,6 +2,7 @@
 The game is a simple guess the word based on MasterMind */
 
 #pragma once
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -44,3 +45,4 @@ private:
 	bool IsIsogram(FString) const;
 	bool IsLowerase(FString) const;
 };
+

@@ -18,10 +18,13 @@ void PrintIntro();
 void PlayTheGame();
 void PrintGameSummary();
 void SetTheWLength();
+void InputValid(int32 a);
+bool TheWordLengthValid(int32 TheWordLength);
 FText GetValidGuess();
 bool AskToPlayAgain();
 
 FBullCowGame BCGame; //instantiate a new game, which we re-use across plays
+
 
 int main() {
 	do {
@@ -120,8 +123,23 @@ void SetTheWLength() {
 	std::cin >> WordLength;
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	std::cout << "\n";
+	while (!TheWordLengthValid(WordLength)) { 
+		std::cout << "Select the length of the word (from 3 to 6): ";
+		std::cin >> WordLength;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "\n";
+	}
 	BCGame.GetTheWordDepOnS(WordLength);
 	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength() << " letter isogram I'm thinking of? \n";
 	std::cout << "You have " << BCGame.GetMaxTries() << " tries to guess the hidden word.\n\n";
 	return;
 }
+
+bool TheWordLengthValid(int32 TheWordLength) {
+	if (TheWordLength < 3 || TheWordLength > 6) {
+		std::cout << "Please enter the right number.\n";
+		return false;
+	}
+	return true;
+}
+
