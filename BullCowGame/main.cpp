@@ -49,6 +49,8 @@ void PrintIntro() {
 	std::cout << "-------------------------------------------------------\n";
 	std::cout << "A Bull - a correct letter in the right place.\n";
 	std::cout << "A Cow - a correct letter, but in the wrong place.\n";
+	std::cout << "Isogram - word or phrase without a repeating letter.\n";
+	std::cout << "The goal of the game - to guess the hidden word.\n";
 	std::cout << "-------------------------------------------------------\n";
 	std::cout << "------G O O D  L U C K  &  L E T' S  S T A R T !-------\n";
 	std::cout << "-------------------------------------------------------\n";
@@ -135,12 +137,11 @@ void SetTheWLength() {
 
 //input validation to define a correct digit
 bool FIsDigit(FText WordLength) {
-	const char *temp = "0123456789-+";
+	const char *temp = "0123456789";
 	unsigned point_count = 0;
 
 	for (int32 i = 0; i < WordLength.size(); i++) {
-		if ((i > 0) && (WordLength[i] == '+' || WordLength[i] == '-')) return false;
-		else if (WordLength[i] == '.') {
+		if (WordLength[i] == '.') {
 			point_count++;
 			if (point_count > 1) return false;
 		}
