@@ -35,23 +35,23 @@ int main() {
 
 //--Functions--
 void PrintIntro() {
-	std::cout << "---------------------------------------------------\n";
-	std::cout << "    Welcome to Bulls and Cows, a fun word game!    \n";
-	std::cout << "---------------------------------------------------\n";
-	std::cout << "                }   {         ___ " << std::endl;
-	std::cout << "                (o o)        (o o) " << std::endl;
-	std::cout << "         /-------\\ /          \\ /-------\\ " << std::endl;
-	std::cout << "        / | BULL |O            O| COW  | \\ " << std::endl;
-	std::cout << "       *  |-,--- |              |------|  * " << std::endl;
-	std::cout << "          ^      ^              ^      ^ " << std::endl;
-	std::cout << "---------------------------------------------------\n";
-	std::cout << "----------D  E  S  C  R  I  P  T  I  O  N:---------\n";
-	std::cout << "---------------------------------------------------\n";
+	std::cout << "-------------------------------------------------------\n";
+	std::cout << "      Welcome to Bulls and Cows, a fun word game!      \n";
+	std::cout << "-------------------------------------------------------\n";
+	std::cout << "                  }   {         ___ " << std::endl;
+	std::cout << "                  (o o)        (o o) " << std::endl;
+	std::cout << "           /-------\\ /          \\ /-------\\ " << std::endl;
+	std::cout << "          / | BULL |O            O| COW  | \\ " << std::endl;
+	std::cout << "         *  |-,--- |              |------|  * " << std::endl;
+	std::cout << "            ^      ^              ^      ^ " << std::endl;
+	std::cout << "-------------------------------------------------------\n";
+	std::cout << "------------D  E  S  C  R  I  P  T  I  O  N:-----------\n";
+	std::cout << "-------------------------------------------------------\n";
 	std::cout << "A Bull - a correct letter in the right place.\n";
 	std::cout << "A Cow - a correct letter, but in the wrong place.\n";
-	std::cout << "---------------------------------------------------\n";
-	std::cout << "----G O O D  L U C K  &  L E T' S  S T A R T !-----\n";
-	std::cout << "---------------------------------------------------\n";
+	std::cout << "-------------------------------------------------------\n";
+	std::cout << "------G O O D  L U C K  &  L E T' S  S T A R T !-------\n";
+	std::cout << "-------------------------------------------------------\n";
 }
 
 //play the single game to complection
@@ -99,7 +99,7 @@ FText GetValidGuess() {
 }
 
 bool AskToPlayAgain() {
-	std::cout << "Do you want to play again with the same hidden word (y/n)? ";
+	std::cout << "Do you want to play again (y/n)? ";
 	FText Response = "";
 	getline(std::cin, Response);
 	std::cout << "\n\n";
@@ -118,7 +118,7 @@ void PrintGameSummary() {
 //set the word length, with input validation
 void SetTheWLength() {
 	FText WordLength = "";
-	std::cout << "Please select the length of the word you'd like to play with (from 3 to 6 letters): ";
+	std::cout << "Select the length of the word (from 3 to 6 letters): ";
 	getline(std::cin, WordLength);
 	std::cout << "\n";
 	while (!FIsDigit(WordLength)) { 
