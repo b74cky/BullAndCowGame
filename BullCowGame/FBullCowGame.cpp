@@ -22,7 +22,7 @@ int32 FBullCowGame::GetTheWordDepOnS (int32 WordLength) {
 			LiWordofSize.push_back(HiddenWordList[i]);
 		}
 	}
-	MyHiddenWord = LiWordofSize[rand() % (WordLength-1)]; //set the random hidden word from the word list with the appropriate length
+	MyHiddenWord = LiWordofSize[rand() % LiWordofSize.size()]; //set the random hidden word from the word list with the appropriate length
 	return int32();
 }
 
@@ -33,6 +33,7 @@ int32 FBullCowGame::GetMaxTries() const {
 
 
 void FBullCowGame::Reset() {
+	MyHiddenWord = "";
 	LiWordofSize.clear();
 	MyCurrentTry = 1;
 	bGameIsWon = false;
