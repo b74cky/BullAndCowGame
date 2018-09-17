@@ -143,7 +143,7 @@ bool FIsDigit(FText WordLength) {
 	for (int32 i = 0; i < WordLength.size(); i++) {
 		if (WordLength[i] == '.') {
 			point_count++;
-			if (point_count > 1) return false;
+			if (point_count > 1 or WordLength[0] == '.') return false;
 		}
 		else if (!strchr(temp, WordLength[i])) return false;
 		else if (WordLength.size() > 10) return false;
